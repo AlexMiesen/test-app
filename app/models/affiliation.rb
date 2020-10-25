@@ -1,3 +1,3 @@
 class Affiliation < ApplicationRecord
-    has_many :people
+    belongs_to :people
 end

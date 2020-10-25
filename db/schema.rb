@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_23_045119) do
+ActiveRecord::Schema.define(version: 2020_10_25_054130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "affiliations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "affiliations_people", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "affiliation_id", null: false
+    t.index ["affiliation_id"], name: "index_affiliations_people_on_affiliation_id"
+    t.index ["person_id"], name: "index_affiliations_people_on_person_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "locations_people", id: false, force: :cascade do |t|
+    t.bigint "person_id", null: false
+    t.bigint "location_id", null: false
+    t.index ["location_id"], name: "index_locations_people_on_location_id"
+    t.index ["person_id"], name: "index_locations_people_on_person_id"
+  end
 
   create_table "people", force: :cascade do |t|
     t.string "first_name"
@@ -24,6 +50,8 @@ ActiveRecord::Schema.define(version: 2020_10_23_045119) do
     t.string "gender"
     t.string "weapon"
     t.string "vehicle"
+    t.integer "location_id"
+    t.integer "affiliation_id"
   end
 
 end

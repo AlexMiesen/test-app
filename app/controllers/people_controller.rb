@@ -1,5 +1,10 @@
 class PeopleController < ApplicationController
-    def csv
+    def csv_uploader
        @people = Person.all 
-    end    
+    end
+    
+    def import
+        Person.import(params[file])
+        redirect_to csv_uploader_people_path, notice: "CSV upload successfully completed"
+    end
 end

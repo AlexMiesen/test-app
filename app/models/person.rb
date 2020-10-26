@@ -1,4 +1,12 @@
 class Person < ApplicationRecord
+    require 'csv'
+
+    def self.import(file)
+        CSV.foreach(file.path, headers: true) do |row|
+            Person.create! row.to_hash
+        end
+    end 
+
     has_and_belongs_to_many :locations 
     has_and_belongs_to_many :affiliations
 

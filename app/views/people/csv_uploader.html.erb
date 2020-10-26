@@ -1,0 +1,44 @@
+<h2>CSV-Uploader<h2>
+
+<div class="media row">
+    <div class="media-body">
+        <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>First Name </th>
+                <th>weapon </th>
+                <th>vehicle </th>
+                <th>species </th>
+                <th>gender </th>
+            </tr>
+        </thead>
+
+        <tbody>
+        <% @people.each do |person| %>
+            <tr>
+                <td><%= person.first_name %></td>
+                <td><%= person.weapon %></td>
+                <td><%= person.vehicle %></td>
+                <td><%= person.species %></td>
+                <td><%= person.gender %></td>
+            <tr>
+        <% end %>
+        </body>
+        </table>
+    </div>
+<div>
+<br>
+
+
+
+<br>
+
+<div class="media row">
+    <div class="media-body">
+    <h3>CSV importer</h3>
+        <%= form_tag csv_uploader_people_path, multipart: true do %>
+            <%= file_field_tag :file %>
+            <%= submit_tag "Import People" %>
+        <% end %>
+    </div>
+</div>

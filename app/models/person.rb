@@ -7,6 +7,19 @@ class Person < ApplicationRecord
         end
     end 
 
+    def self.search(search)
+        if (search)
+            first_name = Person.find_by(first_name: search)
+            if first_name
+                self.where(first_name: first_name)
+            else
+                Person.all
+            end
+        else
+            Person.all
+        end
+    end                     
+
     has_and_belongs_to_many :locations 
     has_and_belongs_to_many :affiliations
 

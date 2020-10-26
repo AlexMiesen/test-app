@@ -29,7 +29,19 @@
 <div>
 <br>
 
+<div>
+    <h3>Search</h3>
+    <%= form_tag(csv_uploader_people_path, method: :get ) do %>
+        <%= text_field_tag(:search, params[:search])%>
+        <%= submit_tag ("Search") %>
+    <% end %>
 
+    <% @people.each do |person| %>
+        <ul>
+            <%# <li><%= person.first_name, csv_uploader_people_path(person) %></li><br> %>
+        </ul>
+    <% end %> 
+</div>
 
 <br>
 

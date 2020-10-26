@@ -1,3 +1,13 @@
 <h1>CSV-Uploader<h1>
 
 
+<ul>
+  <% @people.each do |person| %>
+    <li><%= person.first_name %></li>
+    <li><%= person.weapon %></li>
+    <li><%= person.vehicle %></li>
+    <li><%= person.species %></li>
+    <li><%= person.location_id %></li>
+    
+  <% end %>
+</ul>
